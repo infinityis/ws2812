@@ -6,6 +6,7 @@
  *
  */
 
+#define BIT0	0x01
 
 #include "ws2812.h"
 
@@ -112,22 +113,22 @@ void encodeData3bit(ledcolor_t* led, uint8_t* output) {
 		// right shift bits
 		shiftRegister = grbLED[colorIdx];
 		shiftRegister >>= 1;	// 1 shift from original
-		output[outputIdx+0] |= (shiftRegister & BIT6);	// source bit 7
-		output[outputIdx+1] |= (shiftRegister & BIT2);	// source bit 3
+		output[outputIdx+0] |= (shiftRegister & 0x40);	// shiftregister bit 6, source bit 7
+		output[outputIdx+1] |= (shiftRegister & 0x04);	// shiftregister bit 2, source bit 3
 		shiftRegister >>= 2;	// 3 shifts from original
-		output[outputIdx+0] |= (shiftRegister & BIT3);	// source bit 6
+		output[outputIdx+0] |= (shiftRegister & 0x08);	// shiftregister bit 3, source bit 6
 		shiftRegister >>= 2;	// 5 shifts from original
-		output[outputIdx+0] |= (shiftRegister & BIT0);	// source bit 5
+		output[outputIdx+0] |= (shiftRegister & 0x01);	// shiftregister bit 0, source bit 5
 
 		// left shift bits
 		shiftRegister = grbLED[colorIdx];
 		shiftRegister <<= 1;	// 1 shift from original
-		output[outputIdx+1] |= (shiftRegister & BIT5);	// source bit 4
-		output[outputIdx+2] |= (shiftRegister & BIT1);	// source bit 0
+		output[outputIdx+1] |= (shiftRegister & 0x20);	// shiftregister bit 5, source bit 4
+		output[outputIdx+2] |= (shiftRegister & 0x02);	// shiftregister bit 1, source bit 0
 		shiftRegister <<= 2;	// 3 shifts from original
-		output[outputIdx+2] |= (shiftRegister & BIT4);	// source bit 1
+		output[outputIdx+2] |= (shiftRegister & 0x10);	// shiftregister bit 4, source bit 1
 		shiftRegister <<= 2;	// 5 shifts from original
-		output[outputIdx+2] |= (shiftRegister & BIT7);	// source bit 2
+		output[outputIdx+2] |= (shiftRegister & 0x80);	// shiftregister bit 7, source bit 2
 
 		outputIdx += 3;	// next three bytes (color)
 	}

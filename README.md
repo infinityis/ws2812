@@ -16,6 +16,8 @@ One 3-bit and one 4-bit encoding was implemented for a SPI clock speed as low as
  *	 	 	 	__
  * ONE : 110	  |_
  *
+ * SPI Clock around 2.66MHz
+ *
  * the bti in the middle defines the value
  *
  * data stream: 0x23		 		 0  0  1  0  0  0  1  1
