@@ -6,8 +6,6 @@
  *
  */
 
-#define BIT0	0x01
-
 #include "ws2812.h"
 
 void fillFrameBuffer(ledcolor_t* leds, ledcount_t ledCount, uint8_t* buffer, uint8_t encoding) {
